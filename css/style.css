@@ -1,0 +1,71 @@
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; }
+img { display: block; max-width: 100%; height: auto; }
+
+/* Header across hero */
+.site-logo { width: 180px; height: 80px; vertical-align: middle; margin-right: 10px; }
+header { position: absolute; top: 0; left: 0; right: 0; z-index: 5; background: transparent; }
+/* Grid: logo left, main nav center, actions right */
+.header-bar { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 16px; padding: 2px 16px; }
+header h1 { margin: 0; font-size: 1.25rem; line-height: 1; color: #0b1d14; text-align: center; }
+header nav ul { display: flex; list-style: none; gap: 12px; margin: 0; padding: 0; flex-wrap: nowrap; align-items: center; }
+header nav a { font-size: .95rem; }
+.header-left ul, .header-right ul { white-space: nowrap; }
+.header-left ul { overflow: visible; text-overflow: unset; }
+.header-left ul { justify-content: center; }
+.header-right ul { justify-content: flex-end; }
+header a { color: #0b1d14; text-decoration: none; font-weight: 600; }
+header a:hover { text-decoration: underline; }
+
+/* Dropdown (Каталог товарів) */
+.has-submenu { position: relative; }
+.has-submenu > .submenu { display: none; position: absolute; top: 100%; left: 0; background: #ffffff; border: 1px solid #e5e7eb; border-radius: 8px; padding: 8px 0; min-width: 200px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); z-index: 20; }
+.has-submenu > a .caret { margin-left: 4px; font-size: .9em; }
+.has-submenu:hover > .submenu { display: block; }
+.has-submenu:focus-within > .submenu { display: block; }
+.submenu li { list-style: none; }
+.submenu a { display: block; padding: 8px 12px; color: #0b1d14; text-decoration: none; white-space: nowrap; }
+.submenu a:hover { background: #f3f4f6; }
+
+/* Hero banner */
+.hero { position: relative; color: #0b1d14; min-height: 55vh; display: grid; place-items: center; }
+.hero::before { content: ""; position: absolute; inset: 0; background: rgba(255,255,255,0.55); }
+.hero-content { position: relative; max-width: 1200px; margin: 0 auto; padding: 72px 16px 72px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.hero-logo { width: 120px; height: 120px; display: block; }
+.hero h2 { margin: 0 0 6px; font-size: 2rem; }
+.hero p { margin: 0; font-size: 1rem; }
+
+/* Products grid */
+.products { padding: 32px 16px; }
+.products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; align-items: stretch; }
+
+/* Catalog page skeleton */
+.catalog { padding: 24px 16px; }
+.catalog h2 { margin-top: 64px; }
+.page-content { padding: 0; }
+.section-body { padding: 24px 16px; }
+.page-title { margin-top: 64px; }
+.about-hero { background: url('images/background.png') center/cover no-repeat; text-align: center; padding: 64px 16px; border-radius: 12px; min-height: 40vh; }
+.catalog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+.catalog-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
+.catalog-card h3 { margin: 12px 12px 8px; font-size: 1.05rem; }
+.catalog-card p { margin: 0 12px 12px; color: #4b5563; font-size: .95rem; }
+.product-thumb { width: 100%; aspect-ratio: 4/3; object-fit: cover; background: #e5e7eb; }
+
+/* Product card */
+.product-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; transition: transform .2s ease, box-shadow .2s ease; }
+.product-card:hover { transform: translateY(-4px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
+.product-card img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.product-card h4 { margin: 12px 12px 8px; font-size: 1.05rem; }
+.product-card p { margin: 0 12px 12px; color: #4b5563; font-size: .95rem; }
+
+/* Buy button */
+.buy-button { margin: auto 12px 12px; padding: 10px 14px; border: none; border-radius: 8px; background: #0f766e; color: #fff; font-weight: 600; cursor: pointer; transition: background .2s ease, opacity .2s ease; }
+.buy-button:hover { background: #115e59; }
+
+/* Responsive tweaks */
+@media (min-width: 768px) {
+	.hero h2 { font-size: 2.4rem; }
+	.hero p { font-size: 1.1rem; }
+}

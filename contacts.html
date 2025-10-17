@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакти – TEALAND</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/svg+xml" href="images/logo.svg">
+</head>
+<body>
+    <header>
+        <div class="header-bar">
+            <h1><img src="images/logo.svg" alt="Логотип TEALAND" class="site-logo"></h1>
+            <nav class="header-left" aria-label="Головна навігація">
+                <ul>
+                    <li><a href="index.html">Головна</a></li>
+                    <li class="has-submenu"><a href="#" aria-haspopup="true">Каталог товарів </a>
+                        <ul class="submenu" aria-label="Підменю каталогу">
+                            <li><a href="products.html">Усі товари</a></li>
+                            <li><a href="tea.html">Чай</a></li>
+                            <li><a href="dishes.html">Посуд</a></li>
+                            <li><a href="gifts.html">Подарункові набори</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="blog.html">Наш блог</a></li>
+                    <li><a href="about.html">Про нас</a></li>
+                    <li><a href="help.html">Інформація та допомога</a></li>
+                    <li><a href="contacts.html">Контакти</a></li>
+                </ul>
+            </nav>
+            <nav class="header-right" aria-label="Користувацькі дії">
+                <ul>
+                    <li><a href="cart.html">Кошик</a></li>
+                    <li><a href="user.html">Кабінет користувача</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="page-content">
+        <section class="hero" aria-label="Контакти – банер" style="background-image:url('images/background.png'); background-size:cover; background-position:center;">
+            <div class="hero-content">
+                <h2>Контакти</h2>
+            </div>
+        </section>
+        <section class="section-body">
+            <p>Зв’яжіться з нами, якщо маєте запитання або хочете дізнатися більше про наші чаї.</p>
+            <ul>
+                <li>Телефон: <a href="tel:+380501234567">+38 (050) 123-45-67</a></li>
+                <li>Email: <a href="mailto:info@tealand.ua">info@tealand.ua</a></li>
+                <li>Адреса: м. Київ, вул. Зелена, 12</li>
+            </ul>
+        </section>
+
+        <section class="section-body">
+            <h3>Зворотній зв’язок</h3>
+            <form>
+                <label for="name">Ваше ім’я:</label><br>
+                <input type="text" id="name" name="name" required><br>
+
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email" required><br>
+
+                <label for="message">Повідомлення:</label><br>
+                <textarea id="message" name="message" rows="4"></textarea><br>
+
+                <button type="submit">Надіслати</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 TEALAND. Всі права захищено.</p>
+    </footer>
+</body>
+</html>
