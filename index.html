@@ -3,83 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Головна – TEALAND</title>
+    <title>Головна – TEALAND</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image/svg+xml" href="images/logo.svg">
 </head>
 <body>
-	<header>
-		<div class="header-bar">
-			<h1><img src="images/logo.svg" alt="Логотип TEALAND" class="site-logo"></h1>
-			<nav class="header-left" aria-label="Головна навігація">
-				<ul>
-					<li><a href="index.html">Головна</a></li>
-					<li class="has-submenu"><a href="#" aria-haspopup="true">Каталог товарів </a>
-						<ul class="submenu" aria-label="Підменю каталогу">
-							<li><a href="products.html">Усі товари</a></li>
-							<li><a href="tea.html">Чай</a></li>
-							<li><a href="dishes.html">Посуд</a></li>
-							<li><a href="gifts.html">Подарункові набори</a></li>
-						</ul>
-					</li>
-					<li><a href="blog.html">Наш блог</a></li>
-					<li><a href="about.html">Про нас</a></li>
-					<li><a href="help.html">Інформація та допомога</a></li>
-					<li><a href="contacts.html">Контакти</a></li>
-				</ul>
-			</nav>
-			<nav class="header-right" aria-label="Користувацькі дії">
-				<ul>
-					<li><a href="cart.html">Кошик</a></li>
-					<li><a href="user.html">Кабінет користувача</a></li>
-				</ul>
-			</nav>
-		</div>
-	</header>
+ <header>
+        <div class="header-bar">
+            <h1><img src="images/logo.svg" alt="Логотип TEALAND" class="site-logo"></h1>
+            <button id="nav-toggle" class="nav-toggle" aria-label="Відкрити меню" aria-expanded="false" aria-controls="header-nav">
+                <span class="burger" aria-hidden="true"></span>
+            </button>
+            <nav class="header-left" aria-label="Головна навігація">
+                <ul>
+                    <li><a href="index.html">Головна</a></li>
+                    <li class="has-submenu"><a href="#" aria-haspopup="true">Каталог товарів </a>
+                        <ul class="submenu" aria-label="Підменю каталогу">
+                            <li><a href="products.html">Усі товари</a></li>
+                            <li><a href="tea.html">Чай</a></li>
+                            <li><a href="dishes.html">Посуд</a></li>
+                            <li><a href="gifts.html">Подарункові набори</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="blog.html">Наш блог</a></li>
+                    <li><a href="about.html">Про нас</a></li>
+                    <li><a href="help.html">Інформація та допомога</a></li>
+                    <li><a href="contacts.html">Контакти</a></li>
+                </ul>
+            </nav>
+            <nav class="header-right" aria-label="Користувацькі дії">
+                <ul>
+                    <li><a href="cart.html">Кошик</a></li>
+                    <li><a href="user.html">Кабінет користувача</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
     
 
     <main>
-		<section class="hero" aria-label="Презентаційний банер TEALAND" style="background-image:url('images/background.png'); background-size:cover; background-position:center;">
-			<div class="hero-content">
-				<p>Найсвіжіший чай з наших чайних садів до вашої чашки</p>
-			</div>
-		</section>
-		<section class="products" aria-labelledby="popular-products-title">
-			<h3 id="popular-products-title">Популярні чаї</h3>
-			<div class="products-grid">
-				<article class="product-card">
-					<img src="images/blacktea.webp" alt="Дянь Хун Гунфу Ча — насичений чорний китайський чай">
-					<h4>Дянь Хун Гунфу Ча</h4>
-					<p>Глибокі солодові ноти та м'яка солодкість. Витончений чорний чай Юньнані.</p>
-					<button class="buy-button" type="button">Купити</button>
-				</article>
-				<article class="product-card">
-					<img src="images/sencha.png" alt="Зелений Сенча — освіжаючий японський чай">
-					<h4>Зелений Сенча</h4>
-					<p>Освіжаючий трав'яний аромат, легка солодкість і чистий післясмак. Класика Японії.</p>
-					<button class="buy-button" type="button">Купити</button>
-				</article>
-				<article class="product-card">
-					<img src="images/ulun.webp" alt="Улун Тегуанінь — ароматний напівферментований чай">
-					<h4>Улун Тегуанінь</h4>
-					<p>Квіткові ноти орхідеї, оксамитовий смак і тривале ароматне післясмак.</p>
-					<button class="buy-button" type="button">Купити</button>
-				</article>
-				<article class="product-card">
-					<img src="images/herbal.jpg" alt="Трав'яний мікс — без кофеїну">
-					<h4>Трав'яний Мікс</h4>
-					<p>Ромашка, м'ята та лемонграс — розслаблюючий баланс для вечірнього чаювання.</p>
-					<button class="buy-button" type="button">Купити</button>
-				</article>
-			</div>
-		</section>
+        <section class="hero" aria-label="Презентаційний банер TEALAND" style="background-image:url('images/background.png'); background-size:cover; background-position:center;">
+            <div class="hero-content">
+                <p>Найсвіжіший чай з наших чайних садів до вашої чашки</p>
+            </div>
+        </section>
+        <section class="products" aria-labelledby="popular-products-title">
+            <h3 id="popular-products-title">Популярні чаї</h3>
+            <div class="products-grid">
+                <article class="product-card">
+                    <img src="images/blacktea.webp" alt="Дянь Хун Гунфу Ча — насичений чорний китайський чай">
+                    <h4>Дянь Хун Гунфу Ча</h4>
+                    <p class="price">Ціна (10 г): <strong>250 грн</strong></p>
+                    <button class="buy-button" type="button" data-id="p1" data-name="Дянь Хун Гунфу Ча" data-price="250">Додати в кошик</button>
+                </article>
+                <article class="product-card">
+                    <img src="images/sencha.png" alt="Сенча">
+                    <h4>Зелений Сенча</h4>
+                    <p class="price">Ціна (10 г): <strong>200 грн</strong></p>
+                    <button class="buy-button" type="button" data-id="p2" data-name="Зелений Сенча" data-price="200">Додати в кошик</button>
+                </article>
+                <article class="product-card">
+                    <img src="images/ulun.webp" alt="Улун">
+                    <h4>Улун Тегуанінь</h4>
+                    <p class="price">Ціна (10 г): <strong>300 грн</strong></p>
+                    <button class="buy-button" type="button" data-id="p3" data-name="Улун Тегуанінь" data-price="300">Додати в кошик</button>
+                </article>
+                <article class="product-card">
+                    <img src="images/herbal.jpg" alt="Трав'яний мікс">
+                    <h4>Трав'яний Мікс</h4>
+                    <p class="price">Ціна (10 г): <strong>180 грн</strong></p>
+                    <button class="buy-button" type="button" data-id="p4" data-name="Трав'яний Мікс" data-price="180">Додати в кошик</button>
+                </article>
+            </div>
+        </section>
 
 
     </main>
 
 
     <footer>
-		<p>&copy; 2025 TEALAND. Всі права захищено.</p>
+        <p>&copy; 2025 TEALAND. Всі права захищено.</p>
     </footer>
+
+    <!-- Додаємо скрипт для роботи кнопок -->
+    <script>
+    // ...existing code...
+    (function(){
+        const CART_KEY = 'tealandCart';
+
+        function loadCart() {
+            try {
+                return JSON.parse(localStorage.getItem(CART_KEY) || '{}');
+            } catch (e) {
+                return {};
+            }
+        }
+        function saveCart(cart) {
+            localStorage.setItem(CART_KEY, JSON.stringify(cart));
+        }
+        function cartCount() {
+            const cart = loadCart();
+            return Object.values(cart).reduce((s, item) => s + (item.quantity || 0), 0);
+        }
+        function updateCountUI() {
+            const el = document.getElementById('cart-count');
+            if (el) el.textContent = String(cartCount());
+        }
+        function addToCart(item) {
+            const cart = loadCart();
+            if (!cart[item.id]) {
+                cart[item.id] = { id: item.id, name: item.name, quantity: 0 };
+            }
+            cart[item.id].quantity += 1;
+            saveCart(cart);
+            updateCountUI();
+        }
+        function showToast(container, text) {
+            const t = document.createElement('div');
+            t.textContent = text;
+            t.setAttribute('role', 'status');
+            t.style.position = 'absolute';
+            t.style.right = '12px';
+            t.style.top = '12px';
+            t.style.padding = '6px 10px';
+            t.style.background = 'rgba(0,0,0,0.8)';
+            t.style.color = '#fff';
+            t.style.fontSize = '13px';
+            t.style.borderRadius = '6px';
+            t.style.zIndex = '20';
+            container.style.position = container.style.position || 'relative';
+            container.appendChild(t);
+            setTimeout(() => t.remove(), 1400);
+        }
+
+        document.addEventListener('DOMContentLoaded', function(){
+            updateCountUI();
+
+            document.querySelectorAll('.buy-button').forEach(btn => {
+                btn.addEventListener('click', function(){
+                    const card = btn.closest('.product-card');
+                    const id = btn.dataset.id || (btn.dataset.name || (card && card.querySelector('h4')?.innerText)) || Date.now().toString();
+                    const name = btn.dataset.name || (card && card.querySelector('h4')?.innerText) || 'Товар';
+                    addToCart({ id, name });
+                    if (card) showToast(card, 'Додано до кошика');
+                });
+            });
+        });
+    })();
+    </script>
+    <script src="js/menu.js" defer></script>
 </body>
 </html>

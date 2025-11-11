@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кошик – TEALAND</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/svg+xml" href="images/logo.svg">
+</head>
+<body>
+        <header>
+        <div class="header-bar">
+            <h1><img src="images/logo.svg" alt="Логотип TEALAND" class="site-logo"></h1>
+            <button id="nav-toggle" class="nav-toggle" aria-label="Відкрити меню" aria-expanded="false" aria-controls="header-nav">
+                <span class="burger" aria-hidden="true"></span>
+            </button>
+            <nav id="header-nav" class="header-left" aria-label="Головна навігація">
+                <ul>
+                    <li><a href="index.html">Головна</a></li>
+                    <li class="has-submenu"><a href="#" aria-haspopup="true">Каталог товарів </a>
+                        <ul class="submenu" aria-label="Підменю каталогу">
+                            <li><a href="products.html">Усі товари</a></li>
+                            <li><a href="tea.html">Чай</a></li>
+                            <li><a href="dishes.html">Посуд</a></li>
+                            <li><a href="gifts.html">Подарункові набори</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="blog.html">Наш блог</a></li>
+                    <li><a href="about.html">Про нас</a></li>
+                    <li><a href="help.html">Інформація та допомога</a></li>
+                    <li><a href="contacts.html">Контакти</a></li>
+                </ul>
+            </nav>
+            <nav class="header-right" aria-label="Користувацькі дії">
+                <ul>
+                    <li><a href="cart.html">Кошик</a></li>
+                    <li><a href="user.html">Кабінет користувача</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <script src="js/menu.js" defer></script>
+
+    <main class="page-content">
+        <section class="hero" aria-label="Кошик – банер" style="background-image:url('images/background.png'); background-size:cover; background-position:center;">
+            <div class="hero-content">
+                <h2>Кошик</h2>
+            </div>
+        </section>
+
+        <section class="section-body">
+            <div class="cart-container">
+                <div class="cart-items" id="cart-items">
+                    <!-- Тут динамічно рендеряться позиції -->
+                </div>
+
+                <div class="cart-summary" id="cart-summary">
+                    <!-- Підсумки -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 TEALAND. Всі права захищено.</p>
+    </footer>
+
+    <script>
+    (function(){
+        const CART_KEY = 'tealandCart';
+        const DELIVERY = 50;
+
+        // Централізований перелік товарів — імена, ціни (за 10 г) і зображення
+        const PRODUCTS = {
+            p1: { id:'p1', name: 'Дянь Хун Гунфу Ча', price: 250, image: 'blacktea.webp' },
+            p2: { id:'p2', name: 'Зелений Сенча', price: 200, image: 'sencha.png' },
+            p3: { id:'p3', name: 'Улун Тегуанінь', price: 300, image: 'ulun.webp' },
+            p4: { id:'p4', name: "Трав'яний Мікс", price: 180, image: 'herbal.jpg' },
+            p5: { id:'p5', name: 'Гайвань "Хмаринка"', price: 350, image: 'gaivanclassic.jpg' },
+            p6: { id:'p6', name: 'Гайвань "Котик"', price: 320, image: 'gaivancat.jpg' },
+            p7: { id:'p7', name: 'Чайник "У хмарах"', price: 450, image: 'chainikhmari.webp' },
+            p8: { id:'p8', name: 'Набір посуду "Хмари"', price: 1200, image: 'naborhmari.jpg' },
+
+            t1: { id:'t1', name: 'Дянь Хун Гунфу Ча', price: 250, image: 'blacktea.webp' },
+            t2: { id:'t2', name: 'Зелений Сенча', price: 200, image: 'sencha.png' },
+            t3: { id:'t3', name: 'Улун Тегуанінь', price: 300, image: 'ulun.webp' },
+            t4: { id:'t4', name: "Трав'яний Мікс", price: 180, image: 'herbal.jpg' },
+
+            d1: { id:'d1', name: 'Гайвань "Хмаринка"', price: 350, image: 'gaivanclassic.jpg' },
+            d2: { id:'d2', name: 'Гайвань "Котик"', price: 320, image: 'gaivancat.jpg' },
+            d3: { id:'d3', name: 'Чайник "У хмарах"', price: 450, image: 'chainikhmari.webp' },
+
+            g1: { id:'g1', name: 'Набір посуду "Хмари"', price: 2550, image: 'naborhmari.jpg' },
+            g2: { id:'g2', name: 'Набір "Чай і Ґайвань"', price: 1500, image: 'giftbox_tea.jpg' },
+            g3: { id:'g3', name: 'Бокс "Дегустація"', price: 800, image: 'giftbox_mix.jpg' }
+        };
+
+        function loadCartRaw() {
+            try { return JSON.parse(localStorage.getItem(CART_KEY) || '{}'); }
+            catch (e) { return {}; }
+        }
+
+        // Нормалізуємо різні формати, які могли з'явитися:
+        // - { id: { quantity } } (старий варіант: значення число)
+        // - { id: { id,name,price,quantity } } (новий варіант)
+        function loadCart() {
+            const raw = loadCartRaw();
+            const cart = {};
+            for (const [key, val] of Object.entries(raw)) {
+                // ключ може бути "p1" або "p1-something"
+                const id = String(key).split('-')[0];
+                if (typeof val === 'number') {
+                    // зберігалось як кількість
+                    const prod = PRODUCTS[id] || {};
+                    cart[id] = {
+                        id,
+                        name: prod.name || `Товар ${id}`,
+                        price: prod.price || 0,
+                        quantity: val
+                    };
+                } else if (val && typeof val === 'object') {
+                    // якщо об'єкт — беремо його поля, доповнюємо з PRODUCTS якщо потрібно
+                    const prod = PRODUCTS[id] || {};
+                    cart[id] = {
+                        id,
+                        name: val.name || prod.name || `Товар ${id}`,
+                        price: Number(val.price ?? prod.price ?? 0),
+                        quantity: Number(val.quantity ?? val.qty ?? 0)
+                    };
+                } else {
+                    // невідомий формат — пропускаємо
+                }
+                if (cart[id] && cart[id].quantity <= 0) delete cart[id];
+            }
+            return cart;
+        }
+
+        function saveCart(cart) {
+            // зберігаємо у єдиному форматі: { id: { id,name,price,quantity } }
+            const out = {};
+            for (const [id, item] of Object.entries(cart)) {
+                out[id] = {
+                    id: item.id,
+                    name: item.name,
+                    price: Number(item.price || 0),
+                    quantity: Number(item.quantity || 0)
+                };
+            }
+            localStorage.setItem(CART_KEY, JSON.stringify(out));
+            updateCountUIFromCart(cart);
+        }
+
+        function updateCountUIFromCart(cart) {
+            const el = document.getElementById('cart-count');
+            if (!el) return;
+            const count = Object.values(cart).reduce((s, it) => s + (it.quantity || 0), 0);
+            el.textContent = String(count);
+        }
+
+        function updateCountUI() {
+            const cart = loadCart();
+            updateCountUIFromCart(cart);
+        }
+
+        function renderCart() {
+            const cart = loadCart();
+            const itemsContainer = document.getElementById('cart-items');
+            const summaryContainer = document.getElementById('cart-summary');
+            itemsContainer.innerHTML = '';
+            let subtotal = 0, itemCount = 0;
+
+            const ids = Object.keys(cart);
+            if (!ids.length) {
+                itemsContainer.innerHTML = '<p>Кошик порожній.</p>';
+                summaryContainer.innerHTML = '';
+                updateCountUIFromCart(cart);
+                return;
+            }
+
+            ids.forEach(id => {
+                const it = cart[id];
+                const prod = PRODUCTS[id] || {};
+                const price = Number(it.price ?? prod.price ?? 0);
+                const qty = Number(it.quantity ?? 0);
+                const image = prod.image || it.image || 'placeholder.png';
+                const name = it.name || prod.name || id;
+
+                const itemEl = document.createElement('div');
+                itemEl.className = 'cart-item';
+                itemEl.innerHTML = `
+                    <img src="images/${image}" alt="${escapeHtml(name)}" class="cart-thumb">
+                    <div class="item-details">
+                        <h4>${escapeHtml(name)}</h4>
+                        <p class="price">${price} грн (за 10 г)</p>
+                        <div class="quantity-controls" data-id="${id}">
+                            <button class="quantity-btn" data-action="decrease" data-id="${id}">−</button>
+                            <span class="quantity">${qty}</span>
+                            <button class="quantity-btn" data-action="increase" data-id="${id}">+</button>
+                        </div>
+                        <p class="line-sub">Сума: <strong>${price * qty} грн</strong></p>
+                    </div>
+                    <button class="remove-btn" data-id="${id}" aria-label="Видалити ${escapeHtml(name)}">Видалити</button>
+                `;
+                itemsContainer.appendChild(itemEl);
+
+                subtotal += price * qty;
+                itemCount += qty;
+            });
+
+            const delivery = subtotal > 500 ? 0 : DELIVERY;
+            const total = subtotal + delivery;
+
+            summaryContainer.innerHTML = `
+                <h3>Підсумок замовлення</h3>
+                <div class="summary-details">
+                    <div class="summary-row"><span>Товари (${itemCount})</span><span>${subtotal} грн</span></div>
+                    <div class="summary-row"><span>Доставка</span><span>${delivery} грн</span></div>
+                    <div class="summary-row total"><span>Всього</span><span>${total} грн</span></div>
+                </div>
+                <button id="checkout" class="checkout-button">Оформити замовлення</button>
+            `;
+
+            updateCountUIFromCart(cart);
+        }
+
+        // Делеговані обробники (увесь документ)
+        document.addEventListener('click', function(e){
+            const rem = e.target.closest && e.target.closest('.remove-btn');
+            if (rem) {
+                const id = rem.getAttribute('data-id');
+                const cart = loadCart();
+                delete cart[id];
+                saveCart(cart);
+                renderCart();
+                return;
+            }
+
+            const qtyBtn = e.target.closest && e.target.closest('.quantity-btn');
+            if (qtyBtn) {
+                const id = qtyBtn.getAttribute('data-id');
+                const action = qtyBtn.getAttribute('data-action');
+                const cart = loadCart();
+                if (!cart[id]) return;
+                if (action === 'increase') cart[id].quantity = Number(cart[id].quantity || 0) + 1;
+                if (action === 'decrease') {
+                    cart[id].quantity = Math.max(0, Number(cart[id].quantity || 0) - 1);
+                    if (cart[id].quantity === 0) delete cart[id];
+                }
+                saveCart(cart);
+                renderCart();
+                return;
+            }
+
+            const checkout = e.target.closest && e.target.closest('#checkout');
+            if (checkout) {
+                alert('Оформлення замовлення (демо).');
+                // тут можна реалізувати реальну логіку checkout
+            }
+        });
+
+        function escapeHtml(s = '') {
+            return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+        }
+
+        // Якщо схоронено старим форматом (ключ -> кількість), нормалізуємо при першому завантаженні
+        (function normalizeExisting() {
+            const raw = loadCartRaw();
+            let needSave = false;
+            for (const [key, val] of Object.entries(raw)) {
+                if (typeof val === 'number') {
+                    // замінимо на об'єкт-формат
+                    const id = String(key).split('-')[0];
+                    const prod = PRODUCTS[id] || {};
+                    raw[id] = { id, name: prod.name || `Товар ${id}`, price: prod.price || 0, quantity: val };
+                    delete raw[key];
+                    needSave = true;
+                }
+            }
+            if (needSave) localStorage.setItem(CART_KEY, JSON.stringify(raw));
+        })();
+
+        // Ініціалізація
+        document.addEventListener('DOMContentLoaded', function(){
+            updateCountUI();
+            renderCart();
+        });
+
+    })();
+    </script>
+</body>
+</html>

@@ -6,10 +6,15 @@
     <title>Про нас – TEALAND</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
+    
     <header>
         <div class="header-bar">
             <h1><img src="images/logo.svg" alt="Логотип TEALAND" class="site-logo"></h1>
+            <button id="nav-toggle" class="nav-toggle" aria-label="Відкрити меню" aria-expanded="false" aria-controls="header-nav">
+                <span class="burger" aria-hidden="true"></span>
+            </button>
             <nav class="header-left" aria-label="Головна навігація">
                 <ul>
                     <li><a href="index.html">Головна</a></li>
@@ -59,5 +64,7 @@
     <footer>
         <p>&copy; 2025 TEALAND. Всі права захищено.</p>
     </footer>
+
+    <script src="js/menu.js" defer></script>
 </body>
 </html>

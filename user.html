@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кабінет користувача – TEALAND</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/svg+xml" href="images/logo.svg">
+</head>
+<body>
+ <header>
+        <div class="header-bar">
+            <h1><img src="images/logo.svg" alt="Логотип TEALAND" class="site-logo"></h1>
+            <button id="nav-toggle" class="nav-toggle" aria-label="Відкрити меню" aria-expanded="false" aria-controls="header-nav">
+                <span class="burger" aria-hidden="true"></span>
+            </button>
+            <nav class="header-left" aria-label="Головна навігація">
+                <ul>
+                    <li><a href="index.html">Головна</a></li>
+                    <li class="has-submenu"><a href="#" aria-haspopup="true">Каталог товарів </a>
+                        <ul class="submenu" aria-label="Підменю каталогу">
+                            <li><a href="products.html">Усі товари</a></li>
+                            <li><a href="tea.html">Чай</a></li>
+                            <li><a href="dishes.html">Посуд</a></li>
+                            <li><a href="gifts.html">Подарункові набори</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="blog.html">Наш блог</a></li>
+                    <li><a href="about.html">Про нас</a></li>
+                    <li><a href="help.html">Інформація та допомога</a></li>
+                    <li><a href="contacts.html">Контакти</a></li>
+                </ul>
+            </nav>
+            <nav class="header-right" aria-label="Користувацькі дії">
+                <ul>
+                    <li><a href="cart.html">Кошик</a></li>
+                    <li><a href="user.html">Кабінет користувача</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="page-content">
+        <section class="hero" aria-label="Кабінет користувача – банер" style="background-image:url('images/background.png'); background-size:cover; background-position:center;">
+            <div class="hero-content">
+                <h2>Кабінет користувача</h2>
+            </div>
+        </section>
+        
+        <section class="section-body">
+            <div class="user-dashboard">
+                <div class="user-sidebar">
+                    <div class="user-info">
+                        <div class="user-avatar">
+                            <img src="images/user-avatar.png" alt="Аватар користувача">
+                        </div>
+                        <h3>Іван Петренко</h3>
+                        <p>ivan@example.com</p>
+                    </div>
+                    
+                    <nav class="user-menu">
+                        <ul>
+                            <li><a href="#profile" class="active">Особисті дані</a></li>
+                            <li><a href="#orders">Мої замовлення</a></li>
+                            <li><a href="#addresses">Адреси доставки</a></li>
+                            <li><a href="#wishlist">Список бажань</a></li>
+                            <li><a href="#settings">Налаштування</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                
+                <div class="user-content">
+                    <div id="profile" class="content-section active">
+                        <h3>Особисті дані</h3>
+                        <form class="user-form">
+                            <div class="form-group">
+                                <label for="fullname">Повне ім'я</label>
+                                <input type="text" id="fullname" name="fullname" value="Іван Петренко">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" value="ivan@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Телефон</label>
+                                <input type="tel" id="phone" name="phone" value="+38 (050) 123-45-67">
+                            </div>
+                            <button type="submit" class="save-button">Зберегти зміни</button>
+                        </form>
+                    </div>
+                    
+                    <div id="orders" class="content-section">
+                        <h3>Мої замовлення</h3>
+                        <div class="order-history">
+                            <div class="order-item">
+                                <div class="order-header">
+                                    <span class="order-number">Замовлення #12345</span>
+                                    <span class="order-date">15.03.2025</span>
+                                    <span class="order-status">Виконано</span>
+                                </div>
+                                <div class="order-products">
+                                    <p>Дянь Хун Гунфу Ча, Гайвань "Хмаринка"</p>
+                                </div>
+                                <div class="order-total">
+                                    <span>Сума: 700 грн</span>
+                                </div>
+                            </div>
+                            
+                            <div class="order-item">
+                                <div class="order-header">
+                                    <span class="order-number">Замовлення #12344</span>
+                                    <span class="order-date">10.03.2025</span>
+                                    <span class="order-status">Доставляється</span>
+                                </div>
+                                <div class="order-products">
+                                    <p>Зелений Сенча, Трав'яний Мікс</p>
+                                </div>
+                                <div class="order-total">
+                                    <span>Сума: 350 грн</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 TEALAND. Всі права захищено.</p>
+    </footer>
+    <script src="js/menu.js" defer></script>
+</body>
+</html>

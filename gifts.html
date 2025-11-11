@@ -8,26 +8,29 @@
     <link rel="icon" type="image/svg+xml" href="images/logo.svg">
 </head>
 <body>
-    <header>
+     <header>
         <div class="header-bar">
             <h1><img src="images/logo.svg" alt="Логотип TEALAND" class="site-logo"></h1>
-			<nav class="header-left" aria-label="Головна навігація">
-				<ul>
-					<li><a href="index.html">Головна</a></li>
-					<li class="has-submenu"><a href="#" aria-haspopup="true">Каталог товарів </a>
-						<ul class="submenu" aria-label="Підменю каталогу">
-							<li><a href="products.html">Усі товари</a></li>
-							<li><a href="tea.html">Чай</a></li>
-							<li><a href="dishes.html">Посуд</a></li>
-							<li><a href="gifts.html">Подарункові набори</a></li>
-						</ul>
-					</li>
-					<li><a href="blog.html">Наш блог</a></li>
-					<li><a href="about.html">Про нас</a></li>
-					<li><a href="help.html">Інформація та допомога</a></li>
-					<li><a href="contacts.html">Контакти</a></li>
-				</ul>
-			</nav>
+            <button id="nav-toggle" class="nav-toggle" aria-label="Відкрити меню" aria-expanded="false" aria-controls="header-nav">
+                <span class="burger" aria-hidden="true"></span>
+            </button>
+            <nav class="header-left" aria-label="Головна навігація">
+                <ul>
+                    <li><a href="index.html">Головна</a></li>
+                    <li class="has-submenu"><a href="#" aria-haspopup="true">Каталог товарів </a>
+                        <ul class="submenu" aria-label="Підменю каталогу">
+                            <li><a href="products.html">Усі товари</a></li>
+                            <li><a href="tea.html">Чай</a></li>
+                            <li><a href="dishes.html">Посуд</a></li>
+                            <li><a href="gifts.html">Подарункові набори</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="blog.html">Наш блог</a></li>
+                    <li><a href="about.html">Про нас</a></li>
+                    <li><a href="help.html">Інформація та допомога</a></li>
+                    <li><a href="contacts.html">Контакти</a></li>
+                </ul>
+            </nav>
             <nav class="header-right" aria-label="Користувацькі дії">
                 <ul>
                     <li><a href="cart.html">Кошик</a></li>
@@ -46,12 +49,29 @@
         <section class="catalog" aria-labelledby="catalog-title">
             <h2 id="catalog-title">Подарункові набори</h2>
             <div class="catalog-grid">
-                <article class="catalog-card">
-                    <img class="product-thumb" src="images/naborhmari.jpg" alt="Набір посуду з орнаментом хмар">
+                <article class="product-card">
+                    <img class="product-thumb" src="images/naborhmari.jpg" alt="Набір 'Хмари'">
                     <h3>Набір посуду "Хмари"</h3>
-                    <p>Набір посудо з традиційним орнаментом хмар. </p>
-                    <button class="buy-button" type="button">Додати в кошик</button>
+                    <p class="price">Ціна (10 г): <strong>2550 грн</strong></p>
+                    <button class="buy-button" type="button" data-id="g1" data-name='Набір "Хмари"' data-price="2550">Додати в кошик</button>
                 </article>
+
+                <article class="product-card">
+                    <img class="product-thumb" src="images/giftbox_tea.jpg" alt="Подарунковий набір: чай + гайвань">
+                    <h3>Подарунковий набір "Чай і Ґайвань"</h3>
+                    <p>Комплект: 100 г преміального чаю + традиційна гайвань у коробці.</p>
+                    <p class="price">Ціна (10 г): <strong>1500 грн</strong></p>
+                    <button class="buy-button" type="button" data-id="g2" data-name='Набір "Чай і Ґайвань"' data-price="1500">Додати в кошик</button>
+                </article>
+
+                <article class="product-card">
+                    <img class="product-thumb" src="images/giftbox_mix.jpg" alt="Подарунковий бокс з декількома сортами чаю">
+                    <h3>Подарунковий бокс "Дегустація"</h3>
+                    <p>Чотири маленьких пакети з різними сортами для дегустації.</p>
+                    <p class="price">Ціна (10 г): <strong>800 грн</strong></p>
+                    <button class="buy-button" type="button" data-id="g3" data-name='Бокс "Дегустація"' data-price="800">Додати в кошик</button>
+                </article>
+
             </div>
         </section>
 
@@ -61,5 +81,66 @@
     <footer>
         <p>&copy; 2025 TeaTime. Всі права захищено.</p>
     </footer>
+
+    <script>
+    (function(){
+        const CART_KEY = 'tealandCart';
+
+        function loadCart() {
+            try { return JSON.parse(localStorage.getItem(CART_KEY) || '{}'); }
+            catch (e) { console.error('loadCart error', e); return {}; }
+        }
+        function saveCart(cart) {
+            localStorage.setItem(CART_KEY, JSON.stringify(cart));
+        }
+        function cartCount() {
+            const cart = loadCart();
+            return Object.values(cart).reduce((s, it) => s + (it.quantity || 0), 0);
+        }
+        function updateCountUI() {
+            const el = document.getElementById('cart-count');
+            if (el) el.textContent = String(cartCount());
+        }
+        function addToCart(item) {
+            const cart = loadCart();
+            if (!cart[item.id]) cart[item.id] = { id: item.id, name: item.name, price: item.price || 0, quantity: 0 };
+            cart[item.id].quantity += 1;
+            saveCart(cart);
+            updateCountUI();
+        }
+        function showToast(container, text) {
+            const t = document.createElement('div');
+            t.textContent = text;
+            t.setAttribute('role','status');
+            Object.assign(t.style, {
+                position: 'absolute', right: '12px', top: '12px',
+                padding: '6px 10px', background: 'rgba(0,0,0,0.8)',
+                color: '#fff', fontSize: '13px', borderRadius: '6px', zIndex: 9999
+            });
+            if (container) {
+                if (getComputedStyle(container).position === 'static') container.style.position = 'relative';
+                container.appendChild(t);
+                setTimeout(() => t.remove(), 1400);
+            }
+        }
+
+        // Делегування кліків — працюватиме й для динамічно доданих кнопок
+        document.addEventListener('click', function(e){
+            const btn = e.target.closest && e.target.closest('.buy-button');
+            if (!btn) return;
+            e.preventDefault();
+            const card = btn.closest ? btn.closest('.product-card') : null;
+            const titleEl = card && (card.querySelector('h4') || card.querySelector('h3'));
+            const id = btn.dataset.id || (titleEl && titleEl.innerText) || Date.now().toString();
+            const name = btn.dataset.name || (titleEl && titleEl.innerText) || 'Товар';
+            const price = Number(btn.dataset.price || 0);
+            addToCart({ id, name, price });
+            if (card) showToast(card, 'Додано до кошика');
+        });
+
+        document.addEventListener('DOMContentLoaded', updateCountUI);
+    })();
+    </script>
+    <script src="js/menu.js" defer></script>
 </body>
 </html>
