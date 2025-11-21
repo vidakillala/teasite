@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Про нас – TEALAND</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    
+    <header>
+        <div class="header-bar">
+            <h1><img src="images/logo.svg" alt="Логотип TEALAND" class="site-logo"></h1>
+            <button id="nav-toggle" class="nav-toggle" aria-label="Відкрити меню" aria-expanded="false" aria-controls="header-nav">
+                <span class="burger" aria-hidden="true"></span>
+            </button>
+            <nav class="header-left" aria-label="Головна навігація">
+                <ul>
+                    <li><a href="index.html">Головна</a></li>
+                    <li class="has-submenu"><a href="#" aria-haspopup="true">Каталог товарів </a>
+                        <ul class="submenu" aria-label="Підменю каталогу">
+                            <li><a href="products.html">Усі товари</a></li>
+                            <li><a href="tea.html">Чай</a></li>
+                            <li><a href="dishes.html">Посуд</a></li>
+                            <li><a href="gifts.html">Подарункові набори</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="blog.html">Наш блог</a></li>
+                    <li><a href="about.html">Про нас</a></li>
+                    <li class="has-submenu"><a href="#" aria-haspopup="true">Інформація та допомога</a>
+			<ul class="submenu" aria-label="Підменю каталогу">
+                            <li><a href="privacy.html">Політика конфіденційності</a></li>
+                            <li><a href="agreement.html">Угода користувача</a></li>
+                            <li><a href="payment.html">Оплата, доставка і повернення</a></li>
+			    <li><a href="bonuses.html">Програма лояльності і бонуси</a></li>
+                        </ul>
+		    </li>
+                    <li><a href="contacts.html">Контакти</a></li>
+                </ul>
+            </nav>
+            <nav class="header-right" aria-label="Користувацькі дії">
+                <ul>
+                    <li><a href="cart.html">Кошик</a></li>
+                    <li><a href="user.html">Кабінет користувача</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="page-content">
+        <section class="hero" aria-label="Програма лояльності та бонуси – банер" style="background-image:url('images/background.png'); background-size:cover; background-position:center;">
+            <div class="hero-content">
+                <h2>Програма лояльності та бонуси</h2>
+            </div>
+        </section>
+        <section class="section-body">
+            <h3>1. Як працює програма</h3>
+            <p>Кожен зареєстрований користувач автоматично стає учасником програми лояльності.</p>
+	    <p>За кожну покупку на сайті ви отримуєте бонусні бали, які можна використати для наступних замовлень.</p>
+        </section>
+	
+	<section class="section-body">
+            <h3>2. Нарахування балів</h3>
+	    <p>За 10 грн покупки нараховується 1 бонусний бал.</p>
+	    <p>Бали накопичуються на вашому обліковому записі та відображаються у профілі.</p>
+        </section> 
+
+	<section class="section-body">
+            <h3>3. Використання бонусів</h3>
+	    <p>1 бонусний бал = 1 грн знижки на наступну покупку.</p>
+	    <p>Можна використати будь-яку кількість балів, що накопичена на рахунку, під час оформлення замовлення.</p>
+        </section>
+
+	<section class="section-body">
+            <h3>3. Обмеження</h3>
+	    <p>Бали не підлягають обміну на готівку.</p>
+	    <p>Бонуси можуть бути анульовані у разі порушення правил сайту або шахрайських дій.</p>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 TEALAND. Всі права захищено.</p>
+    </footer>
+
+    <script src="js/menu.js" defer></script>
+</body>
+</html>
