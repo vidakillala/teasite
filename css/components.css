@@ -71,7 +71,6 @@ header a:hover { text-decoration: underline; }
 .user-menu li { margin-bottom: 8px; }
 .user-menu a { display: block; padding: 12px 16px; color: #374151; text-decoration: none; border-radius: 8px; transition: background-color 0.2s; }
 .user-menu a:hover, .user-menu a.active { background: #f3f4f6; color: #0f766e; }
-.user-form { max-width: 500px; }
 .form-group { margin-bottom: 20px; }
 .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #374151; }
 .form-group input { width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 1rem; }
@@ -83,3 +82,81 @@ header a:hover { text-decoration: underline; }
 .order-status:contains("Виконано") { background: #d1fae5; color: #065f46; }
 .order-status:contains("Доставляється") { background: #fef3c7; color: #92400e; }
 .order-total { text-align: right; font-weight: 600; color: #0f766e; margin-top: 12px; }
+
+.user-form {
+    max-width: 500px;
+}
+
+.form-group {
+    margin-bottom: 20px; 
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #0b1d14;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    outline: none;
+}
+
+.form-group textarea {
+    resize: vertical; 
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #0f766e;
+    box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.1);
+}
+
+
+.form-group input:not(:placeholder-shown):valid,
+.form-group textarea:not(:placeholder-shown):valid {
+    border-color: #10b981;
+}
+
+.form-group input:not(:placeholder-shown):invalid,
+.form-group textarea:not(:placeholder-shown):invalid {
+    border-color: #ef4444;
+    background-color: #fff5f5;
+}
+
+.error-message {
+    display: none; 
+    color: #ef4444;
+    font-size: 0.85rem;
+    margin-top: 6px;
+}
+
+.form-group input:not(:placeholder-shown):invalid + .error-message,
+.form-group textarea:not(:placeholder-shown):invalid + .error-message {
+    display: block;
+}
+
+.save-button {
+    background: #0f766e;
+    color: white;
+    border: none;
+    padding: 12px 32px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.save-button:hover {
+    background: #115e59;
+}
+
