@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="uk">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,11 +8,13 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image/svg+xml" href="images/logo.svg">
 </head>
+
 <body>
- <header>
+    <header>
         <div class="header-bar">
             <h1><img src="images/logo.svg" alt="Логотип TEALAND" class="site-logo"></h1>
-            <button id="nav-toggle" class="nav-toggle" aria-label="Відкрити меню" aria-expanded="false" aria-controls="header-nav">
+            <button id="nav-toggle" class="nav-toggle" aria-label="Відкрити меню" aria-expanded="false"
+                aria-controls="header-nav">
                 <span class="burger" aria-hidden="true"></span>
             </button>
             <nav class="header-left" aria-label="Головна навігація">
@@ -28,13 +31,13 @@
                     <li><a href="blog.html">Наш блог</a></li>
                     <li><a href="about.html">Про нас</a></li>
                     <li class="has-submenu"><a href="#" aria-haspopup="true">Інформація та допомога</a>
-			        <ul class="submenu" aria-label="Підменю каталогу">
+                        <ul class="submenu" aria-label="Підменю каталогу">
                             <li><a href="privacy.html">Політика конфіденційності</a></li>
                             <li><a href="agreement.html">Угода користувача</a></li>
                             <li><a href="payment.html">Оплата, доставка і повернення</a></li>
-			        <li><a href="bonuses.html">Програма лояльності і бонуси</a></li>
+                            <li><a href="bonuses.html">Програма лояльності і бонуси</a></li>
                         </ul>
-		            </li>
+                    </li>
                     <li><a href="contacts.html">Контакти</a></li>
                 </ul>
             </nav>
@@ -48,12 +51,13 @@
     </header>
 
     <main class="page-content">
-        <section class="hero" aria-label="Кабінет користувача – банер" style="background-image:url('images/background.png'); background-size:cover; background-position:center;">
+        <section class="hero" aria-label="Кабінет користувача – банер"
+            style="background-image:url('images/background.png'); background-size:cover; background-position:center;">
             <div class="hero-content">
                 <h2>Кабінет користувача</h2>
             </div>
         </section>
-        
+
         <section class="section-body">
             <div class="user-dashboard">
                 <div class="user-sidebar">
@@ -64,7 +68,7 @@
                         <h3>Іван Петренко</h3>
                         <p>ivan@example.com</p>
                     </div>
-                    
+
                     <nav class="user-menu">
                         <ul>
                             <li><a href="#profile" class="active">Особисті дані</a></li>
@@ -75,7 +79,7 @@
                         </ul>
                     </nav>
                 </div>
-                
+
                 <div class="user-content">
                     <div id="profile" class="content-section active">
                         <h3>Особисті дані</h3>
@@ -95,7 +99,7 @@
                             <button type="submit" class="save-button">Зберегти зміни</button>
                         </form>
                     </div>
-                    
+
                     <div id="orders" class="content-section">
                         <h3>Мої замовлення</h3>
                         <div class="order-history">
@@ -112,7 +116,7 @@
                                     <span>Сума: 700 грн</span>
                                 </div>
                             </div>
-                            
+
                             <div class="order-item">
                                 <div class="order-header">
                                     <span class="order-number">Замовлення #12344</span>
@@ -137,6 +141,7 @@
         <p>&copy; 2025 TEALAND. Всі права захищено.</p>
     </footer>
     <script src="js/menu.js" defer></script>
+    <script src="./js/main.js"></script>
 </body>
-</html>
 
+</html>

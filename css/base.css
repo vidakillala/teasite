@@ -1,5 +1,55 @@
+* {
+    box-sizing: border-box;
+}
 
-* { box-sizing: border-box; }
-html, body { height: 100%; }
-body { margin: 0; font-family: sans-serif;}
-img { display: block; max-width: 100%; height: auto; }
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Dark Theme */
+body.dark-theme {
+    background-color: #222;
+    color: #eee;
+}
+
+body.dark-theme header {
+    background-color: #333;
+}
+
+body.dark-theme .product-card,
+body.dark-theme .cart-items,
+body.dark-theme .cart-summary,
+body.dark-theme .user-sidebar,
+body.dark-theme .user-content {
+    background-color: #333;
+    color: #eee;
+    border-color: #444;
+}
+
+body.dark-theme a {
+    color: #81c784;
+}
+
+/* Nav Item Hover (JS) */
+.nav-item-hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    transform: scale(1.05);
+    transition: all 0.2s ease;
+}
+
+body.dark-theme .nav-item-hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
