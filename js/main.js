@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     productCards.forEach(card => {
         card.style.backgroundColor = '#f0f8ff'; // AliceBlue
         card.style.border = '1px solid #add8e6'; // LightBlue border
+	card.style.color = '#000'; //Black text
     });
 
     // 2. Add a new element <p> to the end of <main>
@@ -62,9 +63,13 @@ TEALAND створено для тих, хто хоче перетворити �
 
         accordionContainer.append(toggleButton, hiddenText);
         mainElement.append(accordionContainer);
+}
 
-        // 5. Theme Switcher
+// 5. Theme Switcher 
+    // ---------------------------------------------------------
+    if (!document.getElementById('theme-switcher-btn')) {
         const themeButton = document.createElement('button');
+        themeButton.id = 'theme-switcher-btn';
         themeButton.textContent = 'Змінити тему';
         themeButton.style.position = 'fixed';
         themeButton.style.bottom = '20px';
@@ -90,37 +95,136 @@ TEALAND створено для тих, хто хоче перетворити �
             if (document.body.classList.contains('dark-theme')) {
                 themeButton.style.backgroundColor = '#eee';
                 themeButton.style.color = '#333';
+                // Save theme to LocalStorage
                 localStorage.setItem('theme', 'dark');
             } else {
                 themeButton.style.backgroundColor = '#333';
                 themeButton.style.color = '#fff';
+                // Save theme to LocalStorage
                 localStorage.setItem('theme', 'light');
             }
         });
 
         document.body.appendChild(themeButton);
+    }
 
-        // 6. Highlight navigation menu on hover
-        const navLinks = document.querySelectorAll('nav a');
-        navLinks.forEach(link => {
-            link.addEventListener('mouseenter', () => {
-                link.classList.add('nav-item-hover');
-            });
-            link.addEventListener('mouseleave', () => {
-                link.classList.remove('nav-item-hover');
-            });
+    // 6. Highlight navigation menu on hover
+    const navLinks = document.querySelectorAll('nav a');
+    navLinks.forEach(link => {
+        link.addEventListener('mouseenter', () => {
+            link.classList.add('nav-item-hover');
         });
+        link.addEventListener('mouseleave', () => {
+            link.classList.remove('nav-item-hover');
+        });
+    });
 
-        // 7. Change font size with Arrow keys
-        let currentFontSize = 16;
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'ArrowUp') {
-                currentFontSize += 1;
-                document.body.style.fontSize = `${currentFontSize}px`;
-            } else if (event.key === 'ArrowDown') {
-                currentFontSize = Math.max(10, currentFontSize - 1); // Prevent too small font
-                document.body.style.fontSize = `${currentFontSize}px`;
+    // 7. Change font size with Arrow keys
+    let currentFontSize = 16;
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowUp') {
+            currentFontSize += 1;
+            document.body.style.fontSize = `${currentFontSize}px`;
+        } else if (event.key === 'ArrowDown') {
+            currentFontSize = Math.max(10, currentFontSize - 1);
+            document.body.style.fontSize = `${currentFontSize}px`;
+        }
+    });
+
+    // ---------------------------------------------------------
+    // 8. Form Validation & LocalStorage
+    // ---------------------------------------------------------
+    const contactForm = document.getElementById('contact-form');
+
+    if (contactForm) {
+        console.log("Form found. Validation script initialized.");
+
+        // Define inputs
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const msgInput = document.getElementById('message');
+
+        // --- TASK 5: LOAD SAVED NAME ---
+        // Check if there is a saved name in LocalStorage
+        const savedName = localStorage.getItem('user_name');
+        if (savedName) {
+            nameInput.value = savedName;
+            console.log('Restored name from LocalStorage:', savedName);
+        }
+        // -------------------------------
+
+        contactForm.addEventListener('submit', function(event) {
+            // 8.1. Prevent default submission
+            event.preventDefault();
+
+            // Clear previous errors
+            const inputs = contactForm.querySelectorAll('input, textarea');
+            inputs.forEach(input => {
+                input.style.borderColor = ''; 
+                if (input.nextElementSibling && input.nextElementSibling.classList.contains('error-text')) {
+                    input.nextElementSibling.remove();
+                }
+            });
+
+            // Get form data
+            const nameValue = nameInput.value.trim();
+            const emailValue = emailInput.value.trim();
+            const msgValue = msgInput.value.trim();
+
+            let isValid = true;
+
+            // 8.2. Validation Logic
+
+            // a) Name — min 3 chars
+            if (nameValue.length < 3) {
+                showError(nameInput, "Ім'я має містити мінімум 3 символи");
+                isValid = false;
+            }
+
+            // b) Email — basic check for @ and .
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(emailValue)) {
+                showError(emailInput, "Введіть коректний email");
+                isValid = false;
+            }
+
+            // c) Message — min 10 chars
+            if (msgValue.length < 10) {
+                showError(msgInput, "Повідомлення має бути не коротшим за 10 символів");
+                isValid = false;
+            }
+
+            // If validation is successful
+            if (isValid) {
+                console.log('Form Data:', { name: nameValue, email: emailValue, message: msgValue });
+                
+                // --- TASK 5: SAVE NAME ---
+                localStorage.setItem('user_name', nameValue);
+                // -------------------------
+
+                // Clear form
+                contactForm.reset();
+                
+                // Restore the name immediately after reset (optional, for UX)
+                nameInput.value = nameValue;
+
+                // Show success message
+                alert("Форма успішно надіслана! Ваше ім'я збережено."); 
+            } else {
+                console.log("Validation failed.");
             }
         });
+    }
+
+    // Helper function to display errors
+    function showError(inputElement, messageText) {
+        inputElement.style.borderColor = 'red';
+        const errorDiv = document.createElement('div');
+        errorDiv.textContent = messageText;
+        errorDiv.classList.add('error-text');
+        errorDiv.style.color = 'red';
+        errorDiv.style.fontSize = '0.85em';
+        errorDiv.style.marginTop = '5px';
+        inputElement.insertAdjacentElement('afterend', errorDiv);
     }
 });
